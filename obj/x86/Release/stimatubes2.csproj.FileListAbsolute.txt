@@ -1,0 +1,3 @@
+/home/mahen/Projects/stimatubes2/stimatubes2/bin/Release/stimatubes2.exe
+/home/mahen/Projects/stimatubes2/stimatubes2/obj/x86/Release/stimatubes2.csproj.CoreCompileInputs.cache
+/home/mahen/Projects/stimatubes2/stimatubes2/obj/x86/Release/stimatubes2.exe
