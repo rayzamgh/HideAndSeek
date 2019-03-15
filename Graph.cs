@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-namespace HideAndSeek
+namespace Hide_and_seek
 {   
     /*
      *    
@@ -137,6 +135,7 @@ namespace HideAndSeek
         }
     }
 
+    /*
     class Exec
     {
         static void Main(string[] args)
@@ -180,5 +179,5 @@ namespace HideAndSeek
                 Console.WriteLine();
             }
         }
-    }
+    }*/
 }

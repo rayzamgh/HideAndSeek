@@ -1,0 +1,116 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{18A2A410-1DCD-404F-A58B-C52002901817}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Hide_and_Seek</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Graph.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\FETCH_HEAD" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\origin\master" />
+    <None Include=".git\objects\03\4dd204ccf138693de3569bda2594c78d2b30e0" />
+    <None Include=".git\objects\18\0a9359fc8af14cf5d8735119dda6224962b649" />
+    <None Include=".git\objects\22\43bb4f9e928dd7523cbf6e3d77002039d8537d" />
+    <None Include=".git\objects\30\cee59d157fbb3e06781532a141476a891b68de" />
+    <None Include=".git\objects\34\1b1717d5ae9e4bf2bffa4aa4c5a3a6f9be5ef1" />
+    <None Include=".git\objects\42\70c6a305e617c7e2afdeaf9b6e720a7c2ce888" />
+    <None Include=".git\objects\49\ae774f54d485cceb9dd8e4a0c7654df210fb21" />
+    <None Include=".git\objects\49\d8ddd4f3ba7cb7ce0be337136bb95f6545cb93" />
+    <None Include=".git\objects\52\09cf061be61ba9ec38163276d07d58f10e1cef" />
+    <None Include=".git\objects\73\1793ea3e15b610d903d4a592fdd9dc6750f5d5" />
+    <None Include=".git\objects\75\711445ca4f1950e28c64d68d8d73eaf956e72e" />
+    <None Include=".git\objects\78\b0dce7ec6fa0f0643ba2efb47f7475e80bc418" />
+    <None Include=".git\objects\8d\123c10e9300466fabc32ced5249fd750c8988f" />
+    <None Include=".git\objects\8e\53327a6d959859082bc7d542f83b1930501ae4" />
+    <None Include=".git\objects\99\71dc941201a8eebb2fef05bdc74afaa1ad4350" />
+    <None Include=".git\objects\9a\20ef633739807dab5b31d7e2db14f2cb81891a" />
+    <None Include=".git\objects\bd\3e335ce2eb05444e91af975f291b86071b8ae5" />
+    <None Include=".git\objects\c0\8650f5e2057f9b11d643c5e03c521d865b2bd2" />
+    <None Include=".git\objects\ca\08f11714f3617d4595bf4e593cd5121aa5127c" />
+    <None Include=".git\objects\d1\330b6aa73f4c98552fc27566c9acaf41489920" />
+    <None Include=".git\objects\e7\6f6b17247f0e2a4fdce573ff5b022e944c48ee" />
+    <None Include=".git\objects\e8\9e87d72b8c11dc873ab2ce9f064132b778c60a" />
+    <None Include=".git\objects\ea\3061528fd586551af734b34b587619f7ee009b" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\origin\master" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\objects\pack\" />
+    <Folder Include=".git\refs\tags\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

@@ -1,6 +1,0 @@
-/home/mahen/Projects/stimatubes2/stimatubes2/bin/Debug/stimatubes2.exe
-/home/mahen/Projects/stimatubes2/stimatubes2/bin/Debug/stimatubes2.pdb
-/home/mahen/Projects/stimatubes2/stimatubes2/obj/x86/Debug/stimatubes2.csprojAssemblyReference.cache
-/home/mahen/Projects/stimatubes2/stimatubes2/obj/x86/Debug/stimatubes2.csproj.CoreCompileInputs.cache
-/home/mahen/Projects/stimatubes2/stimatubes2/obj/x86/Debug/stimatubes2.exe
-/home/mahen/Projects/stimatubes2/stimatubes2/obj/x86/Debug/stimatubes2.pdb
