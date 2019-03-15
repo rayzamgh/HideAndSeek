@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace Hide_and_seek
+namespace Hide_and_Seek
 {   
     /*
      *    
