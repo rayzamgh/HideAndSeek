@@ -14,3 +14,10 @@ E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\Hide an
 E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\Hide and Seek.csproj.CoreCompileInputs.cache
 E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\WindowsApplication.exe
 E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\WindowsApplication.pdb
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.Msagl.dll
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.Msagl.Drawing.dll
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.Msagl.xml
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.Msagl.Drawing.xml
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\Hide and Seek.csproj.CopyComplete

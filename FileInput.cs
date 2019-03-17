@@ -7,6 +7,7 @@ public class FileReader
     public int[][] inputArray;
     public int nVertex;
 
+    /*
     static void Main()
     {
         // base stack level
@@ -24,6 +25,7 @@ public class FileReader
                 Console.WriteLine("\n");
         }
     }
+    */
 
     public static void ParseNumberFile(string filename, int[][] inputArray, int nVertex)
     {
