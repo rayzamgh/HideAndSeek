@@ -6,3 +6,11 @@ C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Bes
 C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\obj\x86\Debug\WindowsApplication.pdb
 C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\bin\Debug\WindowsApplication.exe
 C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\obj\x86\Debug\WindowsApplication.exe
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\WindowsApplication.exe
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\WindowsApplication.pdb
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\Hide and Seek.csprojAssemblyReference.cache
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\Hide_and_Seek.Main.resources
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\Hide and Seek.csproj.GenerateResource.cache
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\Hide and Seek.csproj.CoreCompileInputs.cache
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\WindowsApplication.exe
+E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\WindowsApplication.pdb
