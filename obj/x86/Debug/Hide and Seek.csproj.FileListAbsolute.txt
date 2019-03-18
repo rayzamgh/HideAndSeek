@@ -21,3 +21,10 @@ E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.M
 E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.Msagl.Drawing.xml
 E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
 E:\Documents\ITB\Semester 4\Strategi Algoritma\HideAndSeek\obj\x86\Debug\Hide and Seek.csproj.CopyComplete
+C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\bin\Debug\Microsoft.Msagl.dll
+C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\bin\Debug\Microsoft.Msagl.Drawing.dll
+C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\bin\Debug\Microsoft.Msagl.xml
+C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\bin\Debug\Microsoft.Msagl.Drawing.xml
+C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+C:\Users\Aidil Riski\Documents\ITB\Semester 4\Strategi Algoritma\Tugas\Tugas Besar 2\obj\x86\Debug\Hide and Seek.csproj.CopyComplete

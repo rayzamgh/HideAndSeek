@@ -66,7 +66,10 @@ namespace Hide_and_Seek
 
             for (int i = 0; i < _graph.edges.Count(); i++)
             {
-                graph.AddEdge(_graph.edges[i][0].ToString(), _graph.edges[i][1].ToString());
+                for (int j = 1; j < _graph.edges[i].Count(); j++)
+                {
+                    graph.AddEdge(_graph.edges[i][0].ToString(), _graph.edges[i][j].ToString());
+                }
             }
 
             graphViewer.Graph = graph;
