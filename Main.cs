@@ -32,8 +32,6 @@ namespace Hide_and_Seek
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            FormClosing += Main_FormClosing;
-
             /*int[][] arin = new int[][]
             {
                 new int[] {1, 2},
@@ -90,6 +88,8 @@ namespace Hide_and_Seek
             graphViewer.Graph = graph;
 
             graphForm.Controls.Add(graphViewer);
+
+            graphForm.Size = new Size(graphViewer.Size.Width, graphViewer.Size.Height + 30);
             
             if (graphForm != null)
             {
@@ -107,17 +107,12 @@ namespace Hide_and_Seek
             return _control.Location.X + " " + _control.Location.Y;
         }
 
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
         private void graphBrowseButton_Click(object sender, EventArgs o)
         {
             OpenFileDialog ofd = new OpenFileDialog()
             {
-                Filter = "Text files (*.txt) |*.txt",
-                Title = "Open text file"
+                Filter = "Text files (*.txt) | *.txt",
+                Title = "Buka teks graf!"
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -158,7 +153,6 @@ namespace Hide_and_Seek
                         centralize(hasilLabel, this);
 
                         drawGraph(currentGraph);
-
                     }
                     else
                     {
@@ -191,6 +185,7 @@ namespace Hide_and_Seek
                 secondCheck = secondCheck && Int32.Parse(splitQuery[1]) >= currentGraph.edges[0][0] && Int32.Parse(splitQuery[1]) <= currentGraph.edges[currentGraph.edges.Count - 1][0];
                 thirdCheck = thirdCheck && Int32.Parse(splitQuery[2]) >= currentGraph.edges[0][0] && Int32.Parse(splitQuery[2]) <= currentGraph.edges[currentGraph.edges.Count - 1][0];
             }
+
             return firstCheck && secondCheck && thirdCheck;
         }
     }
