@@ -29,8 +29,7 @@ public class FileReader
 
     public void ParseNumberFile(string filename)
     {
-        string pathing = filename;
-        StreamReader sr = File.OpenText("../../" + pathing);
+        StreamReader sr = File.OpenText(filename);
         string fileContent = sr.ReadLine();
         string[] integerStrings = fileContent.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
        

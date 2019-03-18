@@ -28,47 +28,126 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.solveButton = new System.Windows.Forms.Button();
+            this.pathBox = new System.Windows.Forms.TextBox();
+            this.pathLabel = new System.Windows.Forms.Label();
+            this.inputForm = new System.Windows.Forms.Panel();
+            this.queryLabel = new System.Windows.Forms.Label();
+            this.queryBox = new System.Windows.Forms.TextBox();
+            this.graphBrowseButton = new System.Windows.Forms.Button();
+            this.hasilLabel = new System.Windows.Forms.Label();
+            this.inputForm.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 6);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Hide and Seek";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(8, 8);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(159, 26);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "Hide and Seek";
+            this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // solveButton
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(8, 318);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.MinimumSize = new System.Drawing.Size(55, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 27);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Cari!";
-            this.button1.UseVisualStyleBackColor = true;
+            this.solveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.solveButton.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.solveButton.Location = new System.Drawing.Point(9, 166);
+            this.solveButton.Margin = new System.Windows.Forms.Padding(2);
+            this.solveButton.MinimumSize = new System.Drawing.Size(55, 27);
+            this.solveButton.Name = "solveButton";
+            this.solveButton.Size = new System.Drawing.Size(55, 27);
+            this.solveButton.TabIndex = 1;
+            this.solveButton.Text = "Cari!";
+            this.solveButton.UseVisualStyleBackColor = true;
+            // 
+            // pathBox
+            // 
+            this.pathBox.Location = new System.Drawing.Point(62, 7);
+            this.pathBox.Name = "pathBox";
+            this.pathBox.Size = new System.Drawing.Size(180, 20);
+            this.pathBox.TabIndex = 2;
+            // 
+            // pathLabel
+            // 
+            this.pathLabel.AutoSize = true;
+            this.pathLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pathLabel.Location = new System.Drawing.Point(7, 6);
+            this.pathLabel.Name = "pathLabel";
+            this.pathLabel.Size = new System.Drawing.Size(44, 18);
+            this.pathLabel.TabIndex = 3;
+            this.pathLabel.Text = "Path:";
+            // 
+            // inputForm
+            // 
+            this.inputForm.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.inputForm.Controls.Add(this.queryLabel);
+            this.inputForm.Controls.Add(this.queryBox);
+            this.inputForm.Controls.Add(this.graphBrowseButton);
+            this.inputForm.Controls.Add(this.pathLabel);
+            this.inputForm.Controls.Add(this.pathBox);
+            this.inputForm.Location = new System.Drawing.Point(13, 45);
+            this.inputForm.Name = "inputForm";
+            this.inputForm.Size = new System.Drawing.Size(291, 74);
+            this.inputForm.TabIndex = 4;
+            // 
+            // queryLabel
+            // 
+            this.queryLabel.AutoSize = true;
+            this.queryLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.queryLabel.Location = new System.Drawing.Point(7, 47);
+            this.queryLabel.Name = "queryLabel";
+            this.queryLabel.Size = new System.Drawing.Size(53, 18);
+            this.queryLabel.TabIndex = 5;
+            this.queryLabel.Text = "Query:";
+            // 
+            // queryBox
+            // 
+            this.queryBox.Location = new System.Drawing.Point(62, 46);
+            this.queryBox.Name = "queryBox";
+            this.queryBox.Size = new System.Drawing.Size(180, 20);
+            this.queryBox.TabIndex = 5;
+            // 
+            // graphBrowseButton
+            // 
+            this.graphBrowseButton.Location = new System.Drawing.Point(248, 5);
+            this.graphBrowseButton.Name = "graphBrowseButton";
+            this.graphBrowseButton.Size = new System.Drawing.Size(37, 23);
+            this.graphBrowseButton.TabIndex = 4;
+            this.graphBrowseButton.Text = "...";
+            this.graphBrowseButton.UseVisualStyleBackColor = true;
+            // 
+            // hasilLabel
+            // 
+            this.hasilLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.hasilLabel.AutoSize = true;
+            this.hasilLabel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hasilLabel.Location = new System.Drawing.Point(9, 131);
+            this.hasilLabel.Name = "hasilLabel";
+            this.hasilLabel.Size = new System.Drawing.Size(65, 24);
+            this.hasilLabel.TabIndex = 5;
+            this.hasilLabel.Text = "Hasil:";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 365);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MinimumSize = new System.Drawing.Size(539, 404);
+            this.ClientSize = new System.Drawing.Size(324, 201);
+            this.Controls.Add(this.hasilLabel);
+            this.Controls.Add(this.inputForm);
+            this.Controls.Add(this.titleLabel);
+            this.Controls.Add(this.solveButton);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(340, 240);
             this.Name = "Main";
             this.Text = "Main";
+            this.inputForm.ResumeLayout(false);
+            this.inputForm.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -76,7 +155,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Button solveButton;
+        private System.Windows.Forms.TextBox pathBox;
+        private System.Windows.Forms.Label pathLabel;
+        private System.Windows.Forms.Panel inputForm;
+        private System.Windows.Forms.Button graphBrowseButton;
+        private System.Windows.Forms.TextBox queryBox;
+        private System.Windows.Forms.Label queryLabel;
+        private System.Windows.Forms.Label hasilLabel;
     }
 }

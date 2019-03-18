@@ -8,25 +8,26 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Msagl;
 using System.Threading;
+using System.IO;
 
 namespace Hide_and_Seek
 {
     public partial class Main : Form
     {
 
-        Form graphForm = null;
-        Thread graphThread = null;
+        private Form graphForm = null;
+
+        private Graph currentGraph = null;
 
         public Main()
         {
             InitializeComponent();
 
-            Control label1 = this.Controls["label1"];
-            centralize(label1, this);
+            centralize(titleLabel, this);
+            centralize(solveButton, this);
+            centralize(hasilLabel, this);
 
-            Control button1 = this.Controls["button1"];
-            centralize(button1, this);
-            //label1.Text = button1.Location.Y.ToString();
+            graphBrowseButton.Click += new EventHandler(graphBrowseButton_Click);
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -44,21 +45,11 @@ namespace Hide_and_Seek
                 new int[] {7, 8},
                 new int[] {3, 5},
             };*/
-            FileReader FiRe = new FileReader();
-            FiRe.ParseNumberFile("somefile.txt");
 
-
-            Graph pepega = new Graph(FiRe.nVertex, FiRe.inputArray);
-
-            graphThread = new Thread(() =>
-            {
-                drawGraph(pepega);
-            });
-
-            graphThread.Start();
+            solveButton.Click += solveButton_Click;
         }
 
-        public void drawGraph(Graph _graph)
+        private void drawGraph(Graph _graph)
         {
             List<List<bool>> drawnEdges = new List<List<bool>>();
 
@@ -69,20 +60,9 @@ namespace Hide_and_Seek
                 for (int j = 1; j < _graph.edges[i].Count; j++)
                 {
                     temp.Add(false);
-                    //Console.Write(_graph.edges[i][j]);
                 }
-                //Console.WriteLine();
 
                 drawnEdges.Add(temp);
-            }
-
-            for (int i = 0; i < _graph.edges.Count; i++)
-            {
-                for (int j = 0; j < _graph.edges[i].Count; j++)
-                {
-                    Console.Write(_graph.edges[i][j] + " ");
-                }
-                Console.WriteLine();
             }
 
             graphForm = new Form();
@@ -101,7 +81,6 @@ namespace Hide_and_Seek
                         newEdge.Attr.ArrowheadAtSource = Microsoft.Msagl.Drawing.ArrowStyle.None;
                         newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
 
-                        Console.WriteLine(nodeAsal + " " + nodeTujuan + " " + _graph.edges[nodeTujuan - 1].FindIndex(el => el == nodeAsal));
                         drawnEdges[nodeAsal - 1][j] = true;
                         drawnEdges[nodeTujuan - 1][_graph.edges[nodeTujuan - 1].FindIndex(n => n == nodeAsal)] = true;
                     }
@@ -114,27 +93,105 @@ namespace Hide_and_Seek
             
             if (graphForm != null)
             {
-                Application.Run(graphForm);
+                graphForm.Show();
             }
         }
 
-        public void centralize(Control _control, Control _parent)
+        private void centralize(Control _control, Control _parent)
         {
-            //Console.Out.WriteLine(_parent.Width.ToString() + " " + _parent.Height.ToString());
-            _control.Location = new Point(_parent.Location.X + (_parent.Width - _control.Width) / 2, _control.Location.Y);
-            //Console.Out.WriteLine(locationToString(_control));
+            _control.Location = new Point((_parent.Width - _control.Width) / 2, _control.Location.Y);
         }
 
-        public string locationToString(Control _control)
+        private string locationToString(Control _control)
         {
             return _control.Location.X + " " + _control.Location.Y;
         }
 
-        private void Main_FormClosing(Object sender, FormClosingEventArgs e)
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Console.Out.WriteLine("Closing");
 
-            graphThread.Abort();
+        }
+
+        private void graphBrowseButton_Click(object sender, EventArgs o)
+        {
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Filter = "Text files (*.txt) |*.txt",
+                Title = "Open text file"
+            };
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pathBox.Text = ofd.FileName;
+            }
+        }
+
+        private void solveButton_Click(object sender, EventArgs e)
+        {
+            if (graphForm != null)
+            {
+                graphForm.Close();
+            }
+
+            if (pathBox.Text != "")
+            {
+                FileReader FiRe = new FileReader();
+                if (File.Exists(pathBox.Text)){
+                    FiRe.ParseNumberFile(pathBox.Text);
+
+                    GC.Collect();
+                    currentGraph = new Graph(FiRe.nVertex, FiRe.inputArray);
+
+                    string query = queryBox.Text;
+
+                    if (queryValid(query))
+                    {
+                        string[] querySplit = query.Split(' ');
+                        if (currentGraph.IsFerguso(Int32.Parse(querySplit[0]), Int32.Parse(querySplit[1]), Int32.Parse(querySplit[2])))
+                        {
+                            hasilLabel.Text = "Hasil: YA";
+                        }else
+                        {
+                            hasilLabel.Text = "Hasil: TIDAK";
+                        }
+
+                        centralize(hasilLabel, this);
+
+                        drawGraph(currentGraph);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Query tidak valid!", "Error");
+                    }
+                }else
+                {
+                    MessageBox.Show("File tidak ditemukan!", "Error");
+                }
+            }else
+            {
+                MessageBox.Show("Path masih kosong!", "Error");
+            }
+        }
+
+        private bool queryValid(string _query)
+        {
+            if (_query == "")
+            {
+                return false;
+            }
+
+            string[] splitQuery = _query.Split(' ');
+
+            bool firstCheck = Int32.Parse(splitQuery[0]) == 0 | Int32.Parse(splitQuery[0]) == 1;
+            bool secondCheck = Int32.Parse(splitQuery[1]) > 0;
+            bool thirdCheck = Int32.Parse(splitQuery[2]) > 0;
+            if (currentGraph != null)
+            {
+                secondCheck = secondCheck && Int32.Parse(splitQuery[1]) >= currentGraph.edges[0][0] && Int32.Parse(splitQuery[1]) <= currentGraph.edges[currentGraph.edges.Count - 1][0];
+                thirdCheck = thirdCheck && Int32.Parse(splitQuery[2]) >= currentGraph.edges[0][0] && Int32.Parse(splitQuery[2]) <= currentGraph.edges[currentGraph.edges.Count - 1][0];
+            }
+            return firstCheck && secondCheck && thirdCheck;
         }
     }
 }
