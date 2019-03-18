@@ -33,7 +33,7 @@ namespace Hide_and_Seek
 
             FormClosing += Main_FormClosing;
 
-            int[][] arin = new int[][]
+            /*int[][] arin = new int[][]
             {
                 new int[] {1, 2},
                 new int[] {1, 7},
@@ -43,9 +43,12 @@ namespace Hide_and_Seek
                 new int[] {5, 6},
                 new int[] {7, 8},
                 new int[] {3, 5},
-            };
+            };*/
+            FileReader FiRe = new FileReader();
+            FiRe.ParseNumberFile("somefile.txt");
 
-            Graph pepega = new Graph(9, arin);
+
+            Graph pepega = new Graph(FiRe.nVertex, FiRe.inputArray);
 
             graphThread = new Thread(() =>
             {

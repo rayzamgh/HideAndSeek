@@ -76,7 +76,7 @@ namespace Hide_and_Seek
 
         public void AssignWeightUtil(int lvl, int curhome)
         {
-            Console.WriteLine("LVEL"+lvl+" curhome " + curhome);
+            //Console.WriteLine("LVEL"+lvl+" curhome " + curhome);
             weight[curhome - 1] = lvl;
             foreach (int branch in edges[curhome - 1])
             {
@@ -90,7 +90,7 @@ namespace Hide_and_Seek
         public bool IsFerguso(int toraja, int dest, int src)
         {
 
-            Console.WriteLine(dest + "== DEST , BRANCH ==" + src);
+            //Console.WriteLine(dest + "== DEST , BRANCH ==" + src);
             bool temp = false;
             if (toraja == 1)
             {

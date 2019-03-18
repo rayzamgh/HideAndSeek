@@ -7,7 +7,7 @@ public class FileReader
     public int[][] inputArray;
     public int nVertex;
 
-    
+    /*
     static void Main()
     {
         // base stack level
@@ -24,12 +24,13 @@ public class FileReader
                 }
                 Console.WriteLine("\n");
         }
-    }
+    }*/
     
 
-    public static void ParseNumberFile(string filename, int[][] inputArray, int nVertex)
+    public void ParseNumberFile(string filename)
     {
-        StreamReader sr = File.OpenText(filename);
+        string pathing = filename;
+        StreamReader sr = File.OpenText("../../" + pathing);
         string fileContent = sr.ReadLine();
         string[] integerStrings = fileContent.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
        
@@ -44,11 +45,11 @@ public class FileReader
             _inputArray[count] = new int[2] { int.Parse(integerStrings[0]), int.Parse(integerStrings[1]) };
             count++;
         }
-        /*Console.Out.WriteLine(nVertex);
+        Console.Out.WriteLine(nVertex);
         for (int n = 0; n < nVertex-1; n++){
             Console.Out.Write(_inputArray[n][0]);
             Console.Out.WriteLine(_inputArray[n][1]);
-        }*/
+        }
 
         inputArray = _inputArray; //gapapa bitwise karena sama
     }
