@@ -60,6 +60,31 @@ namespace Hide_and_Seek
 
         public void drawGraph(Graph _graph)
         {
+            List<List<bool>> drawnEdges = new List<List<bool>>();
+
+            for (int i = 0; i < _graph.edges.Count; i++)
+            {
+                List<bool> temp = new List<bool>();
+                temp.Add(true);
+                for (int j = 1; j < _graph.edges[i].Count; j++)
+                {
+                    temp.Add(false);
+                    //Console.Write(_graph.edges[i][j]);
+                }
+                //Console.WriteLine();
+
+                drawnEdges.Add(temp);
+            }
+
+            for (int i = 0; i < _graph.edges.Count; i++)
+            {
+                for (int j = 0; j < _graph.edges[i].Count; j++)
+                {
+                    Console.Write(_graph.edges[i][j] + " ");
+                }
+                Console.WriteLine();
+            }
+
             graphForm = new Form();
             Microsoft.Msagl.GraphViewerGdi.GViewer graphViewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph();
@@ -68,7 +93,18 @@ namespace Hide_and_Seek
             {
                 for (int j = 1; j < _graph.edges[i].Count(); j++)
                 {
-                    graph.AddEdge(_graph.edges[i][0].ToString(), _graph.edges[i][j].ToString());
+                    if (!drawnEdges[i][j])
+                    {
+                        int nodeAsal = _graph.edges[i][0];
+                        int nodeTujuan = _graph.edges[i][j];
+                        Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(nodeAsal.ToString(), nodeTujuan.ToString());
+                        newEdge.Attr.ArrowheadAtSource = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                        newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+
+                        Console.WriteLine(nodeAsal + " " + nodeTujuan + " " + _graph.edges[nodeTujuan - 1].FindIndex(el => el == nodeAsal));
+                        drawnEdges[nodeAsal - 1][j] = true;
+                        drawnEdges[nodeTujuan - 1][_graph.edges[nodeTujuan - 1].FindIndex(n => n == nodeAsal)] = true;
+                    }
                 }
             }
 
@@ -84,9 +120,9 @@ namespace Hide_and_Seek
 
         public void centralize(Control _control, Control _parent)
         {
-            Console.Out.WriteLine(_parent.Width.ToString() + " " + _parent.Height.ToString());
+            //Console.Out.WriteLine(_parent.Width.ToString() + " " + _parent.Height.ToString());
             _control.Location = new Point(_parent.Location.X + (_parent.Width - _control.Width) / 2, _control.Location.Y);
-            Console.Out.WriteLine(locationToString(_control));
+            //Console.Out.WriteLine(locationToString(_control));
         }
 
         public string locationToString(Control _control)
@@ -96,7 +132,7 @@ namespace Hide_and_Seek
 
         private void Main_FormClosing(Object sender, FormClosingEventArgs e)
         {
-            Console.Out.WriteLine("Closing");
+            //Console.Out.WriteLine("Closing");
 
             graphThread.Abort();
         }
