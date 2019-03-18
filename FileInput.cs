@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class FileReader
 {
     public int[][] inputArray;
+    public List<string> inputQuery= new List<string>();
     public int nVertex;
+    public int nQuery;
 
     /*
     static void Main()
@@ -44,12 +46,29 @@ public class FileReader
             _inputArray[count] = new int[2] { int.Parse(integerStrings[0]), int.Parse(integerStrings[1]) };
             count++;
         }
-        Console.Out.WriteLine(nVertex);
+        /*Console.Out.WriteLine(nVertex);
         for (int n = 0; n < nVertex-1; n++){
             Console.Out.Write(_inputArray[n][0]);
             Console.Out.WriteLine(_inputArray[n][1]);
-        }
+        }*/
 
         inputArray = _inputArray; //gapapa bitwise karena sama
+    }
+
+    public void ParseQueryFile(string filename)
+    {
+        StreamReader sr = File.OpenText(filename);
+        string fileContent = sr.ReadLine();
+        //string[] integerStrings = fileContent.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        
+        nQuery = int.Parse(fileContent);
+        Console.Out.WriteLine(nQuery);
+
+
+        while ((fileContent = sr.ReadLine()) != null)
+        {
+            //Console.Out.WriteLine(fileContent);
+            inputQuery.Add(fileContent);
+        }
     }
 }

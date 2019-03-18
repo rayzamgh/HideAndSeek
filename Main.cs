@@ -16,8 +16,8 @@ namespace Hide_and_Seek
     {
 
         private Form graphForm = null;
-
         private Graph currentGraph = null;
+        
 
         public Main()
         {
@@ -27,6 +27,7 @@ namespace Hide_and_Seek
             centralize(solveButton, this);
             centralize(hasilLabel, this);
 
+            queryBrowseButton.Click += new EventHandler(queryBrowseButton_Click);
             graphBrowseButton.Click += new EventHandler(graphBrowseButton_Click);
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -45,6 +46,8 @@ namespace Hide_and_Seek
             };*/
 
             solveButton.Click += solveButton_Click;
+
+            fileSolveButton.Click += fileSolveButton_Click;
         }
 
         private void drawGraph(Graph _graph)
@@ -121,8 +124,23 @@ namespace Hide_and_Seek
             }
         }
 
+        private void queryBrowseButton_Click(object sender, EventArgs o)
+        {
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Filter = "Text files (*.txt) | *.txt",
+                Title = "PEPEGA QUERY!"
+            };
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                queryPathBox.Text = ofd.FileName;
+            }
+        }
+
         private void solveButton_Click(object sender, EventArgs e)
         {
+
             if (graphForm != null)
             {
                 graphForm.Close();
@@ -131,6 +149,7 @@ namespace Hide_and_Seek
             if (pathBox.Text != "")
             {
                 FileReader FiRe = new FileReader();
+                
                 if (File.Exists(pathBox.Text)){
                     FiRe.ParseNumberFile(pathBox.Text);
 
@@ -141,12 +160,23 @@ namespace Hide_and_Seek
 
                     if (queryValid(query))
                     {
+                        currentGraph.currentpathing.Clear();
                         string[] querySplit = query.Split(' ');
                         if (currentGraph.IsFerguso(Int32.Parse(querySplit[0]), Int32.Parse(querySplit[1]), Int32.Parse(querySplit[2])))
                         {
+                            /*
+                             * PATHING SETIAP QUERY UDH DITAMBAHIN BENTUKNYA 
+                             * List<int> currentpathing;
+                             * atribut graph!;
+                             */
+                            
+                            Console.Out.WriteLine();
+                            currentGraph.currentpathing.ForEach(el => Console.Out.WriteLine(el));
                             hasilLabel.Text = "Hasil: YA";
                         }else
                         {
+                            Console.Out.WriteLine();
+                            currentGraph.currentpathing.ForEach(el => Console.Out.WriteLine(el));
                             hasilLabel.Text = "Hasil: TIDAK";
                         }
 
@@ -165,6 +195,74 @@ namespace Hide_and_Seek
             }else
             {
                 MessageBox.Show("Path masih kosong!", "Error");
+            }
+        }
+
+        private void fileSolveButton_Click(object sender, EventArgs e)
+        {
+            if (graphForm != null)
+            {
+                graphForm.Close();
+            }
+            
+            if (queryPathBox.Text != "")
+            {
+                FileReader QiRe = new FileReader();
+                FileReader FiRe = new FileReader();
+                
+                
+                if (File.Exists(queryPathBox.Text) && File.Exists(pathBox.Text))
+                {
+                    FiRe.ParseNumberFile(pathBox.Text);
+                    QiRe.ParseQueryFile(queryPathBox.Text);
+                    //string[] queryOut = new string[QiRe.nQuery];
+                    Console.Out.WriteLine("QIRENQUERY" + QiRe.nQuery);
+                    GC.Collect();
+                    currentGraph = new Graph(FiRe.nVertex, FiRe.inputArray);
+
+                    
+                    for(int i = 0; i < QiRe.nQuery; i++)
+                    {
+                        string query = QiRe.inputQuery[i];
+
+                        if (queryValid(query))
+                        {
+                            currentGraph.currentpathing.Clear();
+                            string[] querySplit = query.Split(' ');
+                            if (currentGraph.IsFerguso(Int32.Parse(querySplit[0]), Int32.Parse(querySplit[1]), Int32.Parse(querySplit[2])))
+                            {
+                                
+                                Console.Out.WriteLine();
+                                currentGraph.currentpathing.ForEach(el => Console.Out.WriteLine(el));
+                                Console.Out.WriteLine(query + "  YA");
+                                //queryOut[i] = "Hasil: Ya";
+                            }
+                            else
+                            {
+                                Console.Out.WriteLine();
+                                currentGraph.currentpathing.ForEach(el => Console.Out.WriteLine(el));
+                                Console.Out.WriteLine(query + " TIDAK");
+                                //queryOut[i] = "Hasil: TIDAK";
+                            }
+
+                            //centralize(hasilLabel, this);
+
+                            //drawGraph(currentGraph);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ada query tidak valid!", "Error");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("File tidak ditemukan!", "Error");
+                }
+            }
+            else
+            {
+                MessageBox.Show("QUERY Path masih kosong!", "Error");
             }
         }
 
@@ -187,6 +285,11 @@ namespace Hide_and_Seek
             }
 
             return firstCheck && secondCheck && thirdCheck;
+        }
+
+        private void inputForm_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

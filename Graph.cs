@@ -11,6 +11,8 @@ namespace Hide_and_Seek
         public List<int> weight = new List<int>();
         public List<int> vertices = new List<int>();
         public List<List<int>> edges = new List<List<int>>();
+        public List<int> pathtopoint = new List<int>();
+        public List<int> currentpathing = new List<int>();
         public int NVertex;
 
 
@@ -89,7 +91,7 @@ namespace Hide_and_Seek
 
         public bool IsFerguso(int toraja, int dest, int src)
         {
-
+            currentpathing.Add(src);
             //Console.WriteLine(dest + "== DEST , BRANCH ==" + src);
             bool temp = false;
             if (toraja == 1)
@@ -110,6 +112,7 @@ namespace Hide_and_Seek
                         }
                     }
                 }
+                currentpathing.Remove(src);
                 return(temp);
             }
             else
@@ -130,7 +133,8 @@ namespace Hide_and_Seek
                         }
                     }
                 }
-                return(temp);
+                currentpathing.Remove(src);
+                return (temp);
             }
         }
     }
