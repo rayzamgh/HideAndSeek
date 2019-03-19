@@ -234,15 +234,20 @@ namespace Hide_and_Seek
                 }else
                 {
                     MessageBox.Show("File tidak ditemukan!", "Error");
+                    queryReader = null;
                 }
             }
-            if (currentQueryID < queryReader.inputQuery.Count)
+            if (queryReader != null)
             {
-                queryBox.Text = queryReader.inputQuery[currentQueryID];
-                currentQueryID++;
-            }else
-            {
-                MessageBox.Show("Query sudah habis!", "Bukan Error");
+                if (currentQueryID < queryReader.inputQuery.Count)
+                {
+                    queryBox.Text = queryReader.inputQuery[currentQueryID];
+                    currentQueryID++;
+                }
+                else
+                {
+                    MessageBox.Show("Query sudah habis!", "Bukan Error");
+                }
             }
         }
 
