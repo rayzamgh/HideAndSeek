@@ -76,6 +76,9 @@ namespace Hide_and_Seek
             }
 
             graphForm = new Form();
+
+            graphForm.Icon = Icon;
+
             Microsoft.Msagl.GraphViewerGdi.GViewer graphViewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph();
 
