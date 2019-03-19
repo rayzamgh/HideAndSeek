@@ -11,6 +11,7 @@ namespace Hide_and_Seek
         public List<int> weight = new List<int>();
         public List<int> vertices = new List<int>();
         public List<List<int>> edges = new List<List<int>>();
+        public List<List<int>> pathtoone = new List<List<int>>();
         public List<int> pathtopoint = new List<int>();
         public List<int> currentpathing = new List<int>();
         public int NVertex;
@@ -19,17 +20,23 @@ namespace Hide_and_Seek
         //METHODS
         public Graph(int V, int[][] arrin)
         {
+            List<int> emptypath = new List<int>();
             AssignVertices(V);
             AssignEdges(arrin);
-            AssignWeight();
+            AssignWeight(emptypath);
         }
 
         public void AssignVertices(int V)
-        { 
-            for(int i = 0; i < V; i++)
+        {
+            
+            for (int i = 0; i < V; i++)
             {
+                List<int> temp = new List<int>();
+                temp.Add(1);
                 vertices.Add(i + 1);
                 weight.Add(0);
+                //add path to one (1)
+                pathtoone.Add(temp);
             }
             NVertex = V;
         }
@@ -64,27 +71,31 @@ namespace Hide_and_Seek
                 //Console.WriteLine();
             }
         }
-        public void AssignWeight()
+        public void AssignWeight(List<int> emptypath)
         {
             int King = 0;
             weight[0] = 1;
             foreach (int branch in edges[King]) {
                 //List<int> been = new List<int>();
                 if (branch != 1) {
-                    AssignWeightUtil(2, branch);
+                    //emptypath.Add(branch);
+                    AssignWeightUtil(2, branch, emptypath);
+                    emptypath.Clear();
                     }
             }
         }
 
-        public void AssignWeightUtil(int lvl, int curhome)
+        public void AssignWeightUtil(int lvl, int curhome, List<int> curpath)
         {
             //Console.WriteLine("LVEL"+lvl+" curhome " + curhome);
+            curpath.Add(curhome);
+            curpath.ForEach(el => pathtoone[curhome - 1].Add(el));            
             weight[curhome - 1] = lvl;
             foreach (int branch in edges[curhome - 1])
             {
                 if (branch != curhome && weight[branch - 1] == 0)
                 { 
-                    AssignWeightUtil(lvl + 1, branch);
+                    AssignWeightUtil(lvl + 1, branch, curpath);
                 }
             }
         }

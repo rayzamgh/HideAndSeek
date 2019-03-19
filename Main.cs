@@ -193,6 +193,7 @@ namespace Hide_and_Seek
                     {
                         currentGraph.currentpathing.Clear();
                         string[] querySplit = query.Split(' ');
+                        int src = Int32.Parse(querySplit[2]);
                         List<int> path = null;
                         if (currentGraph.PathExists(Int32.Parse(querySplit[0]), Int32.Parse(querySplit[1]), Int32.Parse(querySplit[2])))
                         {
@@ -203,6 +204,8 @@ namespace Hide_and_Seek
                              */
                             path = currentGraph.currentpathing;
                             hasilLabel.Text = "Hasil: YA";
+                            Console.WriteLine("SRC " + src);
+                            currentGraph.pathtoone[src - 1].ForEach(el => Console.WriteLine(el));
                         }else
                         {
                             hasilLabel.Text = "Hasil: TIDAK";
