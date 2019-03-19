@@ -17,15 +17,24 @@ namespace Hide_and_Seek
 
         private Form graphForm = null;
         private Graph currentGraph = null;
-        
+
+        private FileReader graphReader = null;
+
+        private FileReader queryReader = null;
+        private int currentQueryID = 0;
 
         public Main()
         {
             InitializeComponent();
 
             centralize(titleLabel, this);
-            centralize(solveButton, this);
             centralize(hasilLabel, this);
+
+            centralize(queryPanel, this);
+            centralize(queryLabel, queryPanel);
+
+            centralize(nextQueryButton, this);
+            centralize(solveButton, this);
 
             queryBrowseButton.Click += new EventHandler(queryBrowseButton_Click);
             graphBrowseButton.Click += new EventHandler(graphBrowseButton_Click);
@@ -47,10 +56,10 @@ namespace Hide_and_Seek
 
             solveButton.Click += solveButton_Click;
 
-            fileSolveButton.Click += fileSolveButton_Click;
+            nextQueryButton.Click += nextQueryButton_Click;
         }
 
-        private void drawGraph(Graph _graph)
+        private void drawGraph(Graph _graph, List<int> _path = null)
         {
             List<List<bool>> drawnEdges = new List<List<bool>>();
 
@@ -78,9 +87,23 @@ namespace Hide_and_Seek
                     {
                         int nodeAsal = _graph.edges[i][0];
                         int nodeTujuan = _graph.edges[i][j];
+
                         Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(nodeAsal.ToString(), nodeTujuan.ToString());
                         newEdge.Attr.ArrowheadAtSource = Microsoft.Msagl.Drawing.ArrowStyle.None;
                         newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+
+                        if (_path != null)
+                        {
+                            int pathIDNodeAsal = _path.FindIndex(el => el == nodeAsal);
+                            int pathIDNodeTujuan = _path.FindIndex(el => el == nodeTujuan);
+                            if (pathIDNodeAsal != -1 && pathIDNodeTujuan != -1 && Math.Abs(pathIDNodeAsal - pathIDNodeTujuan) == 1)
+                            {
+                                newEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                            }else
+                            {
+                                newEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                            }
+                        }
 
                         drawnEdges[nodeAsal - 1][j] = true;
                         drawnEdges[nodeTujuan - 1][_graph.edges[nodeTujuan - 1].FindIndex(n => n == nodeAsal)] = true;
@@ -126,10 +149,14 @@ namespace Hide_and_Seek
 
         private void queryBrowseButton_Click(object sender, EventArgs o)
         {
+            queryReader = null;
+            currentQueryID = 0;
+            GC.Collect();
+
             OpenFileDialog ofd = new OpenFileDialog()
             {
                 Filter = "Text files (*.txt) | *.txt",
-                Title = "PEPEGA QUERY!"
+                Title = "Buka teks query!"
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -148,13 +175,14 @@ namespace Hide_and_Seek
 
             if (pathBox.Text != "")
             {
-                FileReader FiRe = new FileReader();
-                
-                if (File.Exists(pathBox.Text)){
-                    FiRe.ParseNumberFile(pathBox.Text);
+                graphReader = new FileReader();
+                GC.Collect();
 
+                if (File.Exists(pathBox.Text)){
+                    graphReader.ParseNumberFile(pathBox.Text);
+
+                    currentGraph = new Graph(graphReader.nVertex, graphReader.inputArray);
                     GC.Collect();
-                    currentGraph = new Graph(FiRe.nVertex, FiRe.inputArray);
 
                     string query = queryBox.Text;
 
@@ -162,27 +190,24 @@ namespace Hide_and_Seek
                     {
                         currentGraph.currentpathing.Clear();
                         string[] querySplit = query.Split(' ');
-                        if (currentGraph.IsFerguso(Int32.Parse(querySplit[0]), Int32.Parse(querySplit[1]), Int32.Parse(querySplit[2])))
+                        List<int> path = null;
+                        if (currentGraph.PathExists(Int32.Parse(querySplit[0]), Int32.Parse(querySplit[1]), Int32.Parse(querySplit[2])))
                         {
                             /*
                              * PATHING SETIAP QUERY UDH DITAMBAHIN BENTUKNYA 
                              * List<int> currentpathing;
                              * atribut graph!;
                              */
-                            
-                            Console.Out.WriteLine();
-                            currentGraph.currentpathing.ForEach(el => Console.Out.WriteLine(el));
+                            path = currentGraph.currentpathing;
                             hasilLabel.Text = "Hasil: YA";
                         }else
                         {
-                            Console.Out.WriteLine();
-                            currentGraph.currentpathing.ForEach(el => Console.Out.WriteLine(el));
                             hasilLabel.Text = "Hasil: TIDAK";
                         }
 
                         centralize(hasilLabel, this);
 
-                        drawGraph(currentGraph);
+                        drawGraph(currentGraph, path);
                     }
                     else
                     {
@@ -198,71 +223,26 @@ namespace Hide_and_Seek
             }
         }
 
-        private void fileSolveButton_Click(object sender, EventArgs e)
+        private void nextQueryButton_Click(object sender, EventArgs e)
         {
-            if (graphForm != null)
+            if (queryReader == null)
             {
-                graphForm.Close();
-            }
-            
-            if (queryPathBox.Text != "")
-            {
-                FileReader QiRe = new FileReader();
-                FileReader FiRe = new FileReader();
-                
-                
-                if (File.Exists(queryPathBox.Text) && File.Exists(pathBox.Text))
+                queryReader = new FileReader();
+                if (File.Exists(queryPathBox.Text))
                 {
-                    FiRe.ParseNumberFile(pathBox.Text);
-                    QiRe.ParseQueryFile(queryPathBox.Text);
-                    //string[] queryOut = new string[QiRe.nQuery];
-                    Console.Out.WriteLine("QIRENQUERY" + QiRe.nQuery);
-                    GC.Collect();
-                    currentGraph = new Graph(FiRe.nVertex, FiRe.inputArray);
-
-                    
-                    for(int i = 0; i < QiRe.nQuery; i++)
-                    {
-                        string query = QiRe.inputQuery[i];
-
-                        if (queryValid(query))
-                        {
-                            currentGraph.currentpathing.Clear();
-                            string[] querySplit = query.Split(' ');
-                            if (currentGraph.IsFerguso(Int32.Parse(querySplit[0]), Int32.Parse(querySplit[1]), Int32.Parse(querySplit[2])))
-                            {
-                                
-                                Console.Out.WriteLine();
-                                currentGraph.currentpathing.ForEach(el => Console.Out.WriteLine(el));
-                                Console.Out.WriteLine(query + "  YA");
-                                //queryOut[i] = "Hasil: Ya";
-                            }
-                            else
-                            {
-                                Console.Out.WriteLine();
-                                currentGraph.currentpathing.ForEach(el => Console.Out.WriteLine(el));
-                                Console.Out.WriteLine(query + " TIDAK");
-                                //queryOut[i] = "Hasil: TIDAK";
-                            }
-
-                            //centralize(hasilLabel, this);
-
-                            //drawGraph(currentGraph);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ada query tidak valid!", "Error");
-                        }
-                    }
-                }
-                else
+                    queryReader.ParseQueryFile(queryPathBox.Text);
+                }else
                 {
                     MessageBox.Show("File tidak ditemukan!", "Error");
                 }
             }
-            else
+            if (currentQueryID < queryReader.inputQuery.Count)
             {
-                MessageBox.Show("QUERY Path masih kosong!", "Error");
+                queryBox.Text = queryReader.inputQuery[currentQueryID];
+                currentQueryID++;
+            }else
+            {
+                MessageBox.Show("Query sudah habis!", "Bukan Error");
             }
         }
 
@@ -285,11 +265,6 @@ namespace Hide_and_Seek
             }
 
             return firstCheck && secondCheck && thirdCheck;
-        }
-
-        private void inputForm_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

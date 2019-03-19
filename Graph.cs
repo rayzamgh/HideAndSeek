@@ -89,7 +89,13 @@ namespace Hide_and_Seek
             }
         }
 
-        public bool IsFerguso(int toraja, int dest, int src)
+        public bool PathExists(int _to_Raja, int _dest, int _src)
+        {
+            currentpathing.Clear();
+            return FindPathRecursion(_to_Raja, _dest, _src);
+        }
+
+        public bool FindPathRecursion(int toraja, int dest, int src)
         {
             currentpathing.Add(src);
             //Console.WriteLine(dest + "== DEST , BRANCH ==" + src);
@@ -105,7 +111,7 @@ namespace Hide_and_Seek
                 {
                     if (curWeight + 1 == weight[branch - 1])
                     {
-                        temp = (IsFerguso(toraja, dest, branch));
+                        temp = (FindPathRecursion(toraja, dest, branch));
                         if(temp == true)
                         {
                             return(temp);
@@ -126,7 +132,7 @@ namespace Hide_and_Seek
                 {
                     if (curWeight - 1 == weight[branch - 1])
                     {
-                        temp = (IsFerguso(toraja, dest, branch));
+                        temp = (FindPathRecursion(toraja, dest, branch));
                         if (temp == true)
                         {
                             return (temp);
@@ -160,7 +166,7 @@ namespace Hide_and_Seek
             Graph pepe = new Graph(9, arin); 
             pepe.weight.ForEach(el => Console.WriteLine(el));
 
-            if (pepe.IsFerguso(0, 9, 1))
+            if (pepe.FindPathRecursion(0, 9, 1))
             {
                 Console.WriteLine("YA");
             }

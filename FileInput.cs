@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class FileReader
 {
     public int[][] inputArray;
-    public List<string> inputQuery= new List<string>();
+    public List<string> inputQuery = new List<string>();
     public int nVertex;
     public int nQuery;
 
