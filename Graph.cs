@@ -14,6 +14,7 @@ namespace Hide_and_Seek
         public List<List<int>> pathtoone = new List<List<int>>();
         public List<int> pathtopoint = new List<int>();
         public List<int> currentpathing = new List<int>();
+        public List<int> aidilPath = new List<int>();
         public int NVertex;
 
 
@@ -104,6 +105,32 @@ namespace Hide_and_Seek
         {
             currentpathing.Clear();
             return FindPathRecursion(_to_Raja, _dest, _src);
+        }
+
+        //Asumsi pasti ada jalan.
+        public void FindPathToOne(int _node)
+        {
+            aidilPath.Add(_node);
+            while (_node != 1)
+            {
+                int id = 0;
+                for (int i = 0; i < edges[_node - 1].Count; i++)
+                {
+                    if (weight[edges[_node - 1][i] - 1] < weight[_node - 1])
+                    {
+                        id = i;
+                        break;
+                    }
+                }
+
+                aidilPath.Add(edges[_node - 1][id]);
+                _node = edges[_node - 1][id];
+            }
+
+            for (int i = 0; i < aidilPath.Count; i++)
+            {
+                Console.WriteLine(aidilPath[i]);
+            }
         }
 
         public bool FindPathRecursion(int toraja, int dest, int src)

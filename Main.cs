@@ -202,10 +202,28 @@ namespace Hide_and_Seek
                              * List<int> currentpathing;
                              * atribut graph!;
                              */
-                            path = currentGraph.currentpathing;
+                            if (Int32.Parse(querySplit[0]) == 0)
+                            {
+                                currentGraph.FindPathToOne(src);
+                                path = currentGraph.aidilPath;
+                            }else
+                            {
+                                path = currentGraph.currentpathing;
+                            }
+                            //path.AddRange(currentGraph.pathtopoint);
                             hasilLabel.Text = "Hasil: YA";
-                            Console.WriteLine("SRC " + src);
-                            currentGraph.pathtoone[src - 1].ForEach(el => Console.WriteLine(el));
+                            //Console.WriteLine("SRC " + src);
+                            //currentGraph.pathtoone[src - 1].ForEach(el => Console.WriteLine(el));
+                            /*
+                            for (int i = 0; i < currentGraph.pathtoone.Count; i++)
+                            {
+                                for (int j = 0; j < currentGraph.pathtoone[i].Count; j++)
+                                {
+                                    Console.Write(currentGraph.pathtoone[i][j] + " ");
+                                }
+                                Console.WriteLine();
+                            }
+                            */
                         }else
                         {
                             hasilLabel.Text = "Hasil: TIDAK";
